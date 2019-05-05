@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Civilization</string>
+    <string name="error_conn">Connection is lost</string>
+    <string name="error_load">Unable to load data</string>
+    <string name="error_read">Unable to read data</string>
+    <string name="error_parse">Unable to parse data</string>
+</resources>
