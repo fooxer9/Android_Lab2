@@ -3,7 +3,6 @@ package msc.fooxer.civilization
 import android.util.Log
 
 import org.json.JSONArray
-import org.json.JSONObject
 import org.json.JSONException
 
 import java.io.BufferedReader
@@ -59,10 +58,10 @@ class JSONParser {
                 val jsonString = response.toString().trim()
                 Log.i(TAG, "Received JSON: $jsonString")
                 try {
-                    val jsonBody = JSONArray(jsonString)
-                    parseItems(items, jsonBody)
+                    val jsonArr = JSONArray(jsonString)
+                    createItems(items, jsonArr)
                 } catch (je: JSONException) {
-                    Log.e(TAG, "Failed to parse JSON", je)
+                    Log.e(TAG, "Failed to create items", je)
                 }
 
             }
@@ -71,7 +70,7 @@ class JSONParser {
         }
 
     @Throws(JSONException::class)
-    private fun parseItems(items: MutableList<ListItem>, jsonArray: JSONArray) {
+    private fun createItems(items: MutableList<ListItem>, jsonArray: JSONArray) {
         for (i in 1 until jsonArray.length()) {
             val jsonObjectItem = jsonArray.getJSONObject(i)
             var tmp: String?
