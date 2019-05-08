@@ -1,6 +1,7 @@
 package msc.fooxer.civilization
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -45,9 +46,15 @@ class FragmentList : Fragment() {
         internal var imageView = itemView.findViewById<ImageView>(R.id.item_imageView) as ImageView
         internal var nameTextView = itemView.findViewById<TextView>(R.id.nameTextView) as TextView
         internal var helpTextView = itemView.findViewById<TextView>(R.id.helpTextView) as TextView
-
+        init{
+        itemView.setOnClickListener(this)
+        }
         override fun onClick(v: View?) {
             //открытие окна информации
+            val intent = Intent(activity, PagerActivity::class.java)
+            intent.putParcelableArrayListExtra("items", itemsArray)
+            intent.putExtra("item_name", itemsArray[adapterPosition].name) // для установки местанахождения адаптера
+            startActivity(intent)
         }
 
         fun onBindView (item: ListItem) {

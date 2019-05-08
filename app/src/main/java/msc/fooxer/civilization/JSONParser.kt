@@ -77,7 +77,9 @@ class JSONParser {
             if (jsonObjectItem.has("helptext")) {
                 tmp = (jsonObjectItem.getString("helptext"))
             } else tmp = null
-            val item = ListItem((jsonObjectItem.getString("graphic")), (jsonObjectItem.getString("name")), tmp)
+            // "https://raw.githubusercontent.com/wesleywerner/ancient-tech/02decf875616dd9692b31658d92e64a20d99f816/src/images/tech/"
+            var graphic: String = "https://raw.githubusercontent.com/wesleywerner/ancient-tech/02decf875616dd9692b31658d92e64a20d99f816/src/images/tech/" + jsonObjectItem.getString("graphic")
+            val item = ListItem(graphic, (jsonObjectItem.getString("name")), tmp)
             items.add(item)
         }
     }
