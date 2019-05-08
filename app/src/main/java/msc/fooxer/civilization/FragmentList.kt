@@ -53,11 +53,11 @@ class FragmentList : Fragment() {
             //открытие окна информации
             val intent = Intent(activity, PagerActivity::class.java)
             intent.putParcelableArrayListExtra("items", itemsArray)
-            intent.putExtra("item_name", itemsArray[adapterPosition].name) // для установки местанахождения адаптера
+            intent.putExtra("item_name", itemsArray[adapterPosition].name) // для установки номера итема, который должен открыть пэйджер
             startActivity(intent)
         }
 
-        fun onBindView (item: ListItem) {
+        fun onBindView (item: ListItem) {  // привязка всего к вью
             nameTextView.text = item.name
             if(item.helptext != null)
                 helpTextView.text = item.helptext

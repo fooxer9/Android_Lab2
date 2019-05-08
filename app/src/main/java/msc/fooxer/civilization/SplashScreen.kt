@@ -32,14 +32,14 @@ class SplashScreen : AppCompatActivity() {
         }
 
         override fun onPreExecute() {
-            super.onPreExecute()
+            super.onPreExecute() // перед выполнением таска
             if (context != null && !isNetworkAvailable(context)) {
-                Toast.makeText(context, "The connection is lost", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "The connection is lost", Toast.LENGTH_LONG).show() //вывод сообщения о соединении с интернетом
             } else Toast.makeText(context, "The connection is ok", Toast.LENGTH_LONG).show()
         }
         override fun onPostExecute(items: List<ListItem>) {
 
-            if (items.isNotEmpty()) Toast.makeText(context,"Data is downloaded", Toast.LENGTH_LONG).show()
+            if (items.isNotEmpty()) Toast.makeText(context,"Data is downloaded", Toast.LENGTH_LONG).show() // сообщение о том, что данные загружены
             SystemClock.sleep(2000)
             val mItems = items as ArrayList<ListItem>
             val i = Intent(baseContext, MainActivity::class.java)
@@ -54,9 +54,4 @@ private fun isNetworkAvailable(context: Context): Boolean {
     val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val networkInfo = connectivityManager.activeNetworkInfo
     return networkInfo != null && networkInfo.isConnectedOrConnecting
-}
-
-interface DataLoadingListener {
-    fun onDataLoaded()
-    fun onDataLoadingFailed(errorResId: Int)
 }

@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val fragmentManager = supportFragmentManager
-        var fragment = fragmentManager.findFragmentById(R.id.fragment_layout)
+        var fragment = fragmentManager.findFragmentById(R.id.fragment_layout) // сюда впихнем фрагмент
 
-        if (fragment == null) {
+        if (fragment == null) { // если фрагмента нет - создаем его
             fragment = createFragment()
             fragmentManager.beginTransaction()
                 .add(R.id.fragment_layout, fragment)
@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun createFragment() : Fragment {
-        val items: ArrayList<ListItem> = intent.getParcelableArrayListExtra("itemsarray")
-        val bundle = Bundle()
-        bundle.putParcelableArrayList("itemsarray", items)
+        val items: ArrayList<ListItem> = intent.getParcelableArrayListExtra("itemsarray") //получаем из интента массив
+        val bundle = Bundle() // временное хранилище
+        bundle.putParcelableArrayList("itemsarray", items) // передаем массив хранилище
         val fragment = FragmentList().newFragment()
-        fragment.arguments = bundle
+        fragment.arguments = bundle // хранилище в фрагмент
         return fragment
     }
 }

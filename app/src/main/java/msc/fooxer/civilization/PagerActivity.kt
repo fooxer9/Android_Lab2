@@ -17,13 +17,13 @@ class PagerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pager)
         pager = findViewById(R.id.viewPager)
-        items = intent.getParcelableArrayListExtra("items")
-        item_name = intent.getStringExtra("item_name")
-        val fm: FragmentManager = supportFragmentManager
+        items = intent.getParcelableArrayListExtra("items") //получаем свой массив
+        item_name = intent.getStringExtra("item_name") //получаем имя объекта, для контроля позиции
+        val fm: FragmentManager = supportFragmentManager // общение фрагментов происходит чз менеджер
         val adapter = PagerAdapter(fm)
         pager.adapter = adapter
 
-        for (i in 0 until items.size)
+        for (i in 0 until items.size) // вот эта настройка пэйджера для вывода нужного итема
         {
             if (items[i].name == item_name) {
                 viewPager.currentItem = i
@@ -36,10 +36,10 @@ class PagerActivity : AppCompatActivity() {
     inner class PagerAdapter(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             val item: ListItem = items[position]
-            val bundle: Bundle = Bundle()
-            bundle.putParcelable("item",item)
+            val bundle: Bundle = Bundle() // создаем временное хранилище данных
+            bundle.putParcelable("item",item) // кладем нужный объект
             val fragment = BigItemFragment().newFragment()
-            fragment.arguments = bundle
+            fragment.arguments = bundle // передаем в новый фрагмент
             return fragment
 
         }
